@@ -35,7 +35,7 @@ public class ClientServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Client c = new Client();
 		c.setNom(request.getParameter("nom"));
-		c.setNom(request.getParameter("prenom"));
+		c.setPrenom(request.getParameter("prenom"));
 		service.addClient(c);
 	}
 
