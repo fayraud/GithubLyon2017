@@ -12,7 +12,7 @@
 <h:form>
 <h:panelGrid columns="2" border="1" width="200" cellpadding="5">
 <f:facet name="header">
-<h:outputLabel value="client choisi" style="color:green"></h:outputLabel>
+<h:outputLabel value="Nouveau client" style="color:green"></h:outputLabel>
 </f:facet>
 
 
@@ -20,6 +20,7 @@
 <h:outputLabel value="prenom" /> <h:inputText value="#{mbclients.client.prenom}"></h:inputText>
 </h:panelGrid>
 <h:commandButton type="submit" value="add" action="#{mbclients.add(mbclients.client)}"></h:commandButton>
+<h:commandButton type="submit" value="liste" action="clients"></h:commandButton>
 </h:form>
 </body>
 </html>
