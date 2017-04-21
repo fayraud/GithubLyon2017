@@ -9,26 +9,30 @@ import javax.faces.bean.SessionScoped;
 
 @ManagedBean(name="mbclients",eager=true)
 @SessionScoped
-public class MBClient {
-	
-	private ArrayList<Client> clients = new ArrayList<Client>();
+public class MBClient2 {
+	ArrayList<Client> clients = new ArrayList<Client>();
 	private Client client=new Client();
-	private ClientService clientService;
-	private Client clientCourant;
 	
-	public MBClient(){
-		clientService = new ClientService();
+	public MBClient2(){
+		//System.out.println("Constructeur MBClients");
+		clients.add(new Client("Dupont","Jean"));
+		clients.add(new Client("Durand","Paul"));
 	}
 
 	public ArrayList<Client> getClients() {
-		return clientService.getClients();
+		//System.out.println("get MBClients");
+		return clients;
+	}
+
+	public void setClients(ArrayList<Client> clients) {
+		this.clients = clients;
 	}
 	
 	public int getNombre(){
-		return clientService.getClients().size();
+		return clients.size();
 	}
 	
-
+	private Client clientCourant;
 	
 	public Client getClientCourant(){
 		return clientCourant;
@@ -36,11 +40,13 @@ public class MBClient {
 	
 	public String select(Client client){
 		this.clientCourant= client;
-		return "clientDisplay";
+		System.out.println("selected : "+client.getNom());
+		return "client";
 	}
 	
 	public String delete(){
-		clientService.delete(clientCourant);
+		System.out.println("deleting : "+clientCourant.getNom());
+		clients.remove(clientCourant);
 		return "clients";
 	}
 	
@@ -57,10 +63,13 @@ public class MBClient {
 	*/
 	
 	public String add(Client client){
-		clientService.add(client);
+		Client newClient= new Client(client.getNom(), client.getPrenom());
+		client.setNom("");
+		client.setPrenom("");
+		System.out.println("adding : "+newClient.getNom());
+		clients.add(newClient);
 		return "clients";
 	}
-
 
 	public Client getClient() {
 		return client;
