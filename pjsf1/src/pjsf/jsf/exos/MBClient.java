@@ -64,6 +64,8 @@ public class MBClient {
 	
 	public String add(Client client){
 		Client newClient= new Client(client.getNom(), client.getPrenom());
+		client.setNom("");
+		client.setPrenom("");
 		System.out.println("adding : "+newClient.getNom());
 		clients.add(newClient);
 		return "clients";
