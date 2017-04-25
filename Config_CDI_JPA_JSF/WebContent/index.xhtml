@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+</h:head>
+<body>
+	<h:messages styleClass="error"></h:messages>
+	<h:form>
+		<h:panelGrid columns="2"  cellpadding="5">
+			<f:facet name="header">
+				<h:outputLabel value="Ajouter un client" style="color:green"></h:outputLabel>
+			</f:facet>
+			<h:outputLabel value="nom" />
+			<h:inputText value="#{clientBean.client.nom}"></h:inputText>
+			<h:outputLabel value="prenom" />
+			<h:inputText value="#{clientBean.client.prenom}"></h:inputText>
+		</h:panelGrid>
+		<h:commandButton type="submit" value="add"
+			action="#{clientBean.add()}"></h:commandButton>
+	</h:form>
+	<BR />
+	<BR />
+
+	<h:form>
+
+		<h:dataTable value="#{clientBean.clients}" var="leClient" border="1"
+			width="200" cellpadding="5">
+			<f:facet name="header">
+				<h:outputLabel value="Liste des clients" style="color:green"></h:outputLabel>
+			</f:facet>
+			<h:column>
+				<f:facet name="header">ID</f:facet>
+	#{leClient.id}
+	</h:column>
+			<h:column>
+				<f:facet name="header">Nom</f:facet>
+	#{leClient.nom}
+	</h:column>
+			<h:column>
+				<f:facet name="header">Prenom</f:facet>
+	#{leClient.prenom}
+	</h:column>
+			<h:column>
+				<f:facet name="header">Supprimer</f:facet>
+				<h:commandLink value="Supprimer"
+					action="#{clientBean.supprimer(leClient)}"></h:commandLink>
+
+			</h:column>
+			<h:column>
+				<f:facet name="header">Modifier</f:facet>
+				<h:commandLink update="@form" value="Modifier"
+					action="#{clientBean.modifier()}">
+					<f:setPropertyActionListener value="#{leClient}" target="#{clientBean.client}"></f:setPropertyActionListener>
+					</h:commandLink>
+
+			</h:column>
+		</h:dataTable>
+
+	</h:form>
+</body>
+</html>
